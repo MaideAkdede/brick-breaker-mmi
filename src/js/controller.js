@@ -7,8 +7,6 @@ const controller = {
     init() {
         document.addEventListener('keydown', (e) => {
             if (this.keys.includes(e.key) && !this.activeKeys.includes(e.key)) {
-                console.log(e)
-                console.log(this.activeKeys)
                 e.preventDefault();
                 this.activeKeys.push(e.key);
             }
