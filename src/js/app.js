@@ -1,5 +1,6 @@
 import paddle from "./paddle";
 import controller from "./controller";
+import ball from "./ball";
 
 import Brick from "./Brick";
 
@@ -36,6 +37,7 @@ const main = {
         //
         paddle.init(main)
         controller.init();
+        ball.init(main)
         this.animate();
     },
     animate() {
@@ -45,6 +47,7 @@ const main = {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         //
         paddle.update();
+        ball.update();
         this.bricks.forEach((brick) => {
             brick.update();
         })
