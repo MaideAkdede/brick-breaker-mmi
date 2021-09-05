@@ -1,13 +1,16 @@
+import paddle from "./paddle";
+import controller from "./controller";
+
 import Brick from "./Brick";
 
 const main = {
     ctx: null,
     canvas: null,
-    //
+    // Brick Values
     bricks: [],
     gap: 11,
     col: 8,
-    row: 4,
+    row: 3,
     brickSize: {
         w: 62,
         h: 20
@@ -30,20 +33,22 @@ const main = {
                 this.bricks.push(new Brick(main, this.x, this.y));
             }
         }
-        //this.bricks.push(new Brick(main));
         //
+        paddle.init(main)
+        controller.init();
         this.animate();
     },
-    animate
-        () {
+    animate() {
         window.requestAnimationFrame(() => {
             this.animate()
         });
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         //
+        paddle.update();
         this.bricks.forEach((brick) => {
             brick.update();
         })
+        //
     }
 }
 main.init();
