@@ -1,4 +1,5 @@
 import controller from "./controller";
+import paddle from "./paddle";
 
 const ball = {
     dx:  Math.floor(2 + Math.random() * 4),
@@ -23,7 +24,8 @@ const ball = {
             this.pos.x += this.dx;
             this.pos.y += this.dy;
             //
-            this.checkEdgeCollision();
+            this.edgeCollision();
+            this.paddleCollision();
         }
         this.draw();
     },
@@ -42,7 +44,7 @@ const ball = {
             }
         })
     },
-    checkEdgeCollision() {
+    edgeCollision() {
         if (this.pos.y > this.canvas.height - this.radius ||
             this.pos.y < this.radius
         ) {
@@ -52,6 +54,14 @@ const ball = {
             this.pos.x > this.canvas.width - this.radius
         ) {
             this.dx = -this.dx;
+        }
+    },
+    paddleCollision(){
+        if( this.pos.y + this.radius >= paddle.pos.y &&
+            this.pos.y - this.radius <= paddle.pos.y + paddle.size.h &&
+            this.pos.x - this.radius >= paddle.pos.x &&
+            this.pos.x + this.radius <= paddle.pos.x + paddle.size.w ){
+            this.dy = -this.dy;
         }
     }
 }
