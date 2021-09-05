@@ -1,5 +1,6 @@
 export default class Brick {
     constructor(main, x, y) {
+        //import datas from main
         this.canvas = main.canvas;
         this.ctx = main.ctx;
         this.bricks = main.bricks;
@@ -13,9 +14,9 @@ export default class Brick {
         //
         this.speed = 5;
         //
-        this.r = Math.floor(Math.random() * (255 - 0 + 1) + 0);
-        this.g = Math.floor(Math.random() * (255 - 0 + 1) + 0);
-        this.b = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+        this.r = Math.floor(Math.random() * 255);
+        this.g = Math.floor(Math.random() * 255);
+        this.b = Math.floor(Math.random() * 255);
         this.color = 'rgb('+this.r+','+this.g+','+this.b+')';
     }
 
