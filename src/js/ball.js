@@ -1,8 +1,8 @@
 import controller from "./controller";
 
 const ball = {
-    dx: 2,
-    dy: 2,
+    dx:  Math.floor(2 + Math.random() * 4),
+    dy:  Math.floor(2 + Math.random() * 4),
     pos: {
         x: 0,
         y: 0,
