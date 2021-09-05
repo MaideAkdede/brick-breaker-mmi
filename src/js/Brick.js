@@ -1,3 +1,6 @@
+import paddle from "./paddle";
+import ball from "./ball";
+
 export default class Brick {
     constructor(main, x, y) {
         //import datas from main
@@ -7,7 +10,7 @@ export default class Brick {
         this.gap = main.gap;
         this.row = main.row;
         this.col = main.col;
-        this.x= x;
+        this.x = x;
         this.y = y;
         this.w = main.brickSize.w;
         this.h = main.brickSize.h;
@@ -17,7 +20,7 @@ export default class Brick {
         this.r = Math.floor(Math.random() * 255);
         this.g = Math.floor(Math.random() * 255);
         this.b = Math.floor(Math.random() * 255);
-        this.color = 'rgb('+this.r+','+this.g+','+this.b+')';
+        this.color = 'rgb(' + this.r + ',' + this.g + ',' + this.b + ')';
     }
 
     draw() {
@@ -25,14 +28,14 @@ export default class Brick {
         this.ctx.beginPath();
         this.ctx.fillStyle = this.color;
         //
-       /* for (let r = 0; r < this.row; r++) {
-            for (let c = 0; c < this.col; c++) {
-                this.x = c * (this.gap + this.size.w) + this.gap;
-                this.y = r * (this.gap + this.size.h) + this.gap + this.gap;
-                this.ctx.rect(this.x, this.y, this.size.w, this.size.h);
-                this.ctx.fill();
-            }
-        }*/
+        /* for (let r = 0; r < this.row; r++) {
+             for (let c = 0; c < this.col; c++) {
+                 this.x = c * (this.gap + this.size.w) + this.gap;
+                 this.y = r * (this.gap + this.size.h) + this.gap + this.gap;
+                 this.ctx.rect(this.x, this.y, this.size.w, this.size.h);
+                 this.ctx.fill();
+             }
+         }*/
         //
         //this.ctx.fillRect(20, 15, this.size.w, this.size.h);
         this.ctx.rect(this.x, this.y, this.w, this.h);
@@ -41,9 +44,26 @@ export default class Brick {
     }
 
     update() {
+        this.brickBallCollision();
         this.draw();
     }
+
     static get colors() {
         return ['#a77f8b', '#8b7bcf', '#7bbe72', '#d4a65d', '#D6384F'];
+    }
+    brickBallCollision() {
+        console.log('HELLO')
+        if (ball.pos.x + ball.radius > this.x &&
+            ball.pos.x - ball.radius < this.x + this.w &&
+            ball.pos.y + ball.radius > this.y &&
+            ball.pos.y - ball.radius < this.y + this.h
+        ) {
+            ball.dy = -ball.dy;
+            this.removeBrick(this);
+        }
+    }
+    removeBrick(brick) {
+        const i = this.bricks.indexOf(brick);
+        this.bricks.splice(i, 1)
     }
 }

@@ -2,8 +2,8 @@ import controller from "./controller";
 import paddle from "./paddle";
 
 const ball = {
-    dx:  Math.floor(2 + Math.random() * 4),
-    dy:  Math.floor(2 + Math.random() * 4),
+    dx: Math.floor(2 + Math.random() * 4),
+    dy: Math.floor(2 + Math.random() * 4),
     pos: {
         x: 0,
         y: 0,
@@ -56,11 +56,11 @@ const ball = {
             this.dx = -this.dx;
         }
     },
-    paddleCollision(){
-        if( this.pos.y + this.radius >= paddle.pos.y &&
-            this.pos.y - this.radius <= paddle.pos.y + paddle.size.h &&
-            this.pos.x - this.radius >= paddle.pos.x &&
-            this.pos.x + this.radius <= paddle.pos.x + paddle.size.w ){
+    paddleCollision() {
+        if (this.pos.y + this.radius > paddle.pos.y &&
+            this.pos.y - this.radius < paddle.pos.y + paddle.size.h &&
+            this.pos.x - this.radius > paddle.pos.x &&
+            this.pos.x + this.radius < paddle.pos.x + paddle.size.w) {
             this.dy = -this.dy;
         }
     }
