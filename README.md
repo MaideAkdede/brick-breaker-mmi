@@ -1,5 +1,5 @@
-# A sort of Space Invaders
-> with bullet and bricks 
+# Brick Breaker 
+> with random colored bricks and a ball 
 ***
 
 ![Screenshot of the game](ss.png)
